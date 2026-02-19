@@ -144,11 +144,7 @@ body.light-mode .glass-card:hover {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
 }
 
-.profile-image-container:hover {
-    /* Hover effect removed as requested */
-    /* transform: scale(1.05) rotate(2deg); */
-    /* box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3); */
-}
+/* .profile-image-container:hover removed as per previous request */
 
 /* Skill Bubbles */
 .skill-bubble {
@@ -175,9 +171,7 @@ body.light-mode .glass-card:hover {
     transition: transform 0.5s ease;
 }
 
-.profile-image-container:hover img {
-    /* transform: scale(1.1); Zoom removed */
-}
+/* .profile-image-container:hover img removed as per previous request */
 
 /* Typography & Decorative */
 .text-gradient {
@@ -698,16 +692,21 @@ body.light-mode .glass-card:hover {
 .leaf-label {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #f8fafc; /* High contrast white/slate-50 */
+    color: #f8fafc;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     white-space: nowrap;
-    transition: color 0.3s ease;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Add depth for readability */
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 10px;
 }
 
 .leaf-inner:hover .leaf-label {
-    color: #10b981;
+    opacity: 1;
+    visibility: visible;
+    color: var(--primary-color);
 }
 
 /* Light Mode Adjustments for Flow Line */
@@ -731,15 +730,16 @@ body.light-mode .leaf-inner:hover .leaf-label {
     color: var(--primary-color) !important;
 }
 
-/* Mobile & Tablet Adjustments for Skills Tree */
-@media (max-width: 768px) {
+/* Mobile & Tablet Adjustments for Skills Tree (Non-Laptop Devices) */
+@media (max-width: 1024px) {
     /* Skill Tree Container - Vertical Stack for Mobile */
     .skill-tree-container {
-        min-height: 800px !important;
+        min-height: auto !important;
+        height: auto !important;
         display: flex;
         flex-direction: column !important;
         align-items: center;
-        padding: 40px 0;
+        padding: 20px 0;
     }
     
     .skill-flow-visual {
@@ -747,10 +747,10 @@ body.light-mode .leaf-inner:hover .leaf-label {
         left: 50%;
         top: 0;
         bottom: 0;
-        width: 4px !important;
+        width: 2px !important;
         height: 100% !important;
         transform: translateX(-50%);
-        min-height: 800px;
+        min-height: 100%;
     }
 
     .skill-flow-visual svg {
@@ -773,11 +773,12 @@ body.light-mode .leaf-inner:hover .leaf-label {
     .tree-leaves {
         position: relative !important;
         width: 100%;
-        height: 100%;
+        height: auto !important;
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 40px;
         align-items: center;
+        padding: 40px 0;
     }
 
     .tree-leaf {
@@ -786,7 +787,8 @@ body.light-mode .leaf-inner:hover .leaf-label {
         top: auto !important;
         transform: scale(0) !important;
         opacity: 0;
-        margin-bottom: 20px;
+        margin-bottom: 0;
+        width: 100%;
     }
 
     .tree-grown .tree-leaf {
@@ -805,8 +807,11 @@ body.light-mode .leaf-inner:hover .leaf-label {
     }
 
     .leaf-label {
-        font-size: 0.7rem !important;
-        margin-top: 8px;
+        font-size: 0.9rem !important;
+        margin-top: 12px;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
     }
 
     /* Reveal animations adjustments */
