@@ -757,28 +757,20 @@ body.light-mode .leaf-inner:hover .leaf-label {
         display: none; /* Hide horizontal SVG on mobile */
     }
 
-    /* CSS Vertical Line for Mobile */
+    /* CSS Vertical Line for Mobile - Disabled for Grid Layout */
     .skill-flow-visual::before {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 2px;
-        background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
-        opacity: 0.3;
-        transform: translateX(-50%);
+        display: none;
     }
 
     .tree-leaves {
         position: relative !important;
         width: 100%;
         height: auto !important;
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-        align-items: center;
-        padding: 40px 0;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px !important;
+        justify-items: center;
+        padding: 40px 10px;
     }
 
     .tree-leaf {
@@ -818,6 +810,20 @@ body.light-mode .leaf-inner:hover .leaf-label {
     .reveal {
         transform: translateY(30px);
     }
+    }
+}
+
+/* Mobile Menu Blur Effect */
+.menu-open main, 
+.menu-open section:not(#navbar),
+.menu-open .mesh-bg {
+    filter: blur(10px);
+    transition: filter 0.3s ease;
+    pointer-events: none;
+}
+
+#navbar {
+    z-index: 100 !important;
 }
 
 /* Tablet Optimizations */
