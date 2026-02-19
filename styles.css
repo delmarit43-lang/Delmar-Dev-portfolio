@@ -1,24 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
-
 :root {
-  --primary-color: #3b82f6;
-  --secondary-color: #60a5fa;
+  --primary-color: #10b981; /* Emerald 500 */
+  --primary-dark: #059669; /* Emerald 600 */
+  --secondary-color: #f59e0b; /* Amber 500 (Gold) */
+  --secondary-dark: #d97706; /* Amber 600 (Dark Gold) */
   --bg-dark: #020617;
   --bg-light: #f8fafc;
   --text-dark: #f8fafc;
   --text-light: #0f172a;
-  --glass-bg-dark: rgba(255, 255, 255, 0.05);
+  --glass-bg-dark: rgba(255, 255, 255, 0.03);
   --glass-bg-light: rgba(255, 255, 255, 0.7);
-  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-border-dark: rgba(255, 255, 255, 0.08);
   --glass-border-light: rgba(0, 0, 0, 0.08);
 }
 
 body {
-  font-family: "Outfit", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
   background-color: var(--bg-dark);
   color: var(--text-dark);
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
 }
 
 body.light-mode {
@@ -110,11 +111,11 @@ body.light-mode .experience-badge {
 
 /* Glassmorphism Utilities */
 .glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: var(--glass-bg-dark);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border-dark);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
 .glass-card {
@@ -174,6 +175,11 @@ body.light-mode .glass-card:hover {
 /* .profile-image-container:hover img removed as per previous request */
 
 /* Typography & Decorative */
+h1, h2, h3, h4, .text-display {
+  font-family: "Sora", sans-serif;
+  letter-spacing: -0.02em;
+}
+
 .text-gradient {
   background: linear-gradient(
     to right,
@@ -276,7 +282,7 @@ body.light-mode .glass-card:hover {
 .sphere-2 {
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, #8b5cf6, transparent);
+    background: radial-gradient(circle, #6366f1, transparent);
     bottom: -100px;
     right: -100px;
     animation-delay: -5s;
@@ -285,7 +291,7 @@ body.light-mode .glass-card:hover {
 .sphere-3 {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, #10b981, transparent);
+    background: radial-gradient(circle, var(--secondary-color), transparent);
     top: 40%;
     left: 50%;
     animation-delay: -10s;
@@ -808,8 +814,7 @@ body.light-mode .leaf-inner:hover .leaf-label {
 
     /* Reveal animations adjustments */
     .reveal {
-        transform: translateY(30px);
-    }
+        transform: translateY(30px) !important;
     }
 }
 

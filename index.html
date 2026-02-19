@@ -29,6 +29,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -44,7 +47,8 @@
               dark: "#0f172a",
             },
             fontFamily: {
-              sans: ["Outfit", "sans-serif"],
+              sans: ["Plus Jakarta Sans", "sans-serif"],
+              display: ["Sora", "sans-serif"],
             },
             keyframes: {
               wiggle: {
@@ -100,8 +104,8 @@
           <div class="flex items-center justify-between h-16 relative">
             <!-- Logo (Left) -->
             <div class="flex-shrink-0 flex items-center gap-3 relative z-20">
-               <img src="images/about-profile.jpeg" alt="Profile" class="w-8 h-8 rounded-md border-2 border-primary object-cover object-top">
-              <a href="#home" class="text-xl font-bold text-white tracking-wide">Delmar <span class="text-primary">Dev</span></a>
+               <img src="images/about-profile.jpeg" alt="Profile" class="w-8 h-8 rounded-md border-2 border-emerald-500 object-cover object-top">
+              <a href="#home" class="text-xl font-bold text-white tracking-wide text-display">Delmar <span class="text-emerald-500">Dev</span></a>
             </div>
 
             <!-- Centered Desktop Menu -->
@@ -192,9 +196,8 @@
                     </span>
                     Open to remote opportunities and global collaboration
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
-                    Architecting Scalable <span class="text-gradient">Digital Experiences</span> <br />
-                    That Drive Growth.
+                <h1 class="text-5xl md:text-8xl font-extrabold text-white mb-6 tracking-tight leading-[1.1] text-display">
+                    Architecting Scalable <span class="text-gradient">Digital Experiences</span>
                 </h1>
                 <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10">
                     I build high-performance web applications with a focus on speed, scalability, and user-centric design. Transforming complex problems into elegant, profitable solutions.
@@ -253,7 +256,7 @@
             </div>
           </div>
                 <div class="reveal order-1 md:order-2">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">About <span class="text-gradient">Me</span></h2>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 text-display">About <span class="text-gradient">Me</span></h2>
                     <div class="space-y-6 text-slate-400 text-lg leading-relaxed">
                         <p class="font-medium text-slate-200">
                              I am a software engineer who bridges the gap between technical complexity and business value. With deep expertise in the React ecosystem and modern web architecture, I don't just write code—I build products.
