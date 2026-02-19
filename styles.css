@@ -822,7 +822,6 @@ body.light-mode .leaf-inner:hover .leaf-label {
 .menu-open main, 
 .menu-open section:not(#navbar),
 .menu-open .mesh-bg {
-    filter: blur(10px);
     transition: filter 0.3s ease;
     pointer-events: none;
 }
