@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article | Delmar Dev</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "var(--primary-color)",
+              secondary: "var(--secondary-color)",
+              dark: "#0f172a",
+            },
+            fontFamily: {
+              sans: ["Outfit", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .article-hero {
+        position: relative;
+        min-height: 380px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        padding-top: 80px;
+      }
+      .article-hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .article-hero-bg.bg-blue {
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 40%, #1e40af 70%, #3b82f6 100%);
+      }
+      .article-hero-bg.bg-green {
+        background: linear-gradient(135deg, #0f172a 0%, #064e3b 40%, #065f46 70%, #10b981 100%);
+      }
+      .article-hero-bg.bg-pink {
+        background: linear-gradient(135deg, #0f172a 0%, #4c1d3e 40%, #831843 70%, #f43f5e 100%);
+      }
+      .article-hero-bg::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, #0f172a 0%, transparent 50%);
+      }
+      .hero-decoration {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.3;
+        animation: float-decoration 6s ease-in-out infinite alternate;
+      }
+      .hero-decoration-1 {
+        width: 300px;
+        height: 300px;
+        top: -50px;
+        right: -50px;
+        background: rgba(255,255,255,0.1);
+      }
+      .hero-decoration-2 {
+        width: 200px;
+        height: 200px;
+        bottom: 20px;
+        right: 20%;
+        background: rgba(255,255,255,0.08);
+        animation-delay: -3s;
+      }
+      @keyframes float-decoration {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(15px, -15px) scale(1.1); }
+      }
+      .article-body h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .article-body h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .article-body p {
+        color: #94a3b8;
+        line-height: 1.85;
+        margin-bottom: 1.25rem;
+        font-size: 1.05rem;
+      }
+      .article-body ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+        margin-bottom: 1.25rem;
+      }
+      .article-body ul li {
+        color: #94a3b8;
+        margin-bottom: 0.5rem;
+        line-height: 1.7;
+      }
+      .article-body code {
+        background: rgba(59, 130, 246, 0.15);
+        color: #93c5fd;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-family: "Fira Code", monospace;
+      }
+      .article-body pre {
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 1.5rem;
+        overflow-x: auto;
+        margin-bottom: 1.5rem;
+      }
+      .article-body pre code {
+        background: none;
+        padding: 0;
+        font-size: 0.85rem;
+        line-height: 1.6;
+      }
+      .article-body blockquote {
+        border-left: 4px solid var(--primary-color);
+        padding: 1rem 1.5rem;
+        margin: 1.5rem 0;
+        background: rgba(59, 130, 246, 0.05);
+        border-radius: 0 8px 8px 0;
+      }
+      .article-body blockquote p {
+        color: #cbd5e1;
+        font-style: italic;
+        margin-bottom: 0;
+      }
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        z-index: 9999;
+        transition: width 0.1s linear;
+      }
+      .related-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(59, 130, 246, 0.3);
+      }
+      .all-articles-grid .article-card {
+        transition: all 0.3s ease;
+      }
+      .all-articles-grid .article-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(59, 130, 246, 0.3);
+      }
+      @media (max-width: 768px) {
+        .article-hero { min-height: 320px; }
+      }
+    </style>
+  </head>
+  <body class="bg-dark text-slate-200 relative">
+    <!-- Premium UI Elements -->
+    <div class="mesh-bg">
+        <div class="mesh-sphere sphere-1"></div>
+        <div class="mesh-sphere sphere-2"></div>
+        <div class="mesh-sphere sphere-3"></div>
+    </div>
+    <div class="page-transition-overlay"></div>
+
+    <!-- Floating Buttons (Pinned outside transforms) -->
+    <a href="#" id="back-to-top" class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/252634579898" class="whatsapp-float group" target="_blank">
+        <span class="whatsapp-tooltip">Chat with us!</span>
+        <div class="relative">
+            <i class="fab fa-whatsapp text-3xl"></i>
+            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-[#25d366]">1</span>
+        </div>
+        <div class="whatsapp-pulse"></div>
+    </a>
+
+    <div class="fade-in">
+
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+      <div class="glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <div class="flex-shrink-0 flex items-center gap-3">
+              <img src="images/about-profile.jpeg" alt="Profile" class="w-8 h-8 rounded-md border-2 border-primary object-cover object-top">
+              <a href="index.html" class="text-xl font-bold text-white tracking-wide">Delmar <span class="text-primary">Dev</span></a>
+            </div>
+            <div class="flex items-center gap-4">
+              <a href="index.html#articles" class="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+              </a>
+              <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-white/10 transition-colors" aria-label="Toggle Theme">
+                <i class="fas fa-sun text-yellow-400 text-xl" id="theme-icon"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="article-content"></main>
+
+    <!-- Footer -->
+    <footer class="py-6 border-t border-white/5 bg-black/40">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-slate-500 text-sm">
+          Designed & Built with
+          <i class="text-red-500 mx-1"></i> by
+          <span class="text-slate-300">Delmar Dev</span>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // ============================
+      // Articles Data Store
+      // ============================
+      const articles = [
+        {
+          id: 1,
+          title: "Mastering Server Components in Next.js 14",
+          category: "Engineering",
+          categoryColor: "blue",
+          image: "https://placehold.co/1200x600/0f172a/3b82f6?text=Next.js+14&font=outfit",
+          readTime: "5 min read",
+          date: "Jan 15, 2026",
+          author: "Delmar Dev",
+          summary: "A deep dive into the new rendering paradigms in Next.js and how to leverage them for maximum performance.",
+          content: `
+            <p>Next.js 14 introduced a fundamental shift in how we think about rendering React applications. Server Components are not just a new feature — they represent a paradigm shift in web development that changes the game for performance, developer experience, and user experience.</p>
+
+            <h2>What Are Server Components?</h2>
+            <p>Server Components are React components that <strong>render exclusively on the server</strong>. Unlike traditional React components that ship JavaScript to the client, Server Components send only the rendered HTML. This means zero JavaScript bundle cost for these components.</p>
+
+            <blockquote><p>Server Components allow you to think about your application architecture at the component level, giving you fine-grained control over what runs on the server and what runs on the client.</p></blockquote>
+
+            <h2>The Key Benefits</h2>
+            <ul>
+              <li><strong>Reduced Bundle Size:</strong> Server Components don't add to your JavaScript bundle. Heavy dependencies like markdown parsers or date libraries stay on the server.</li>
+              <li><strong>Direct Backend Access:</strong> Query databases, access file systems, and call internal APIs directly without needing API routes.</li>
+              <li><strong>Automatic Code Splitting:</strong> Client Components are automatically code-split, meaning users only download the JavaScript they need.</li>
+              <li><strong>Streaming:</strong> Server Components support streaming, letting you progressively send chunks of the UI as they become ready.</li>
+            </ul>
+
+            <h2>Server vs Client Components</h2>
+            <p>The mental model is straightforward: use Server Components by default, and opt into Client Components only when you need interactivity, browser APIs, or React hooks like <code>useState</code> and <code>useEffect</code>.</p>
+
+            <pre><code>// This is a Server Component (default in app/ directory)
+async function ArticleList() {
+  const articles = await db.articles.findMany();
+
+  return (
+    &lt;div&gt;
+      {articles.map(article =&gt; (
+        &lt;ArticleCard key={article.id} data={article} /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+// This is a Client Component
+'use client';
+function LikeButton({ articleId }) {
+  const [liked, setLiked] = useState(false);
+  return &lt;button onClick={() =&gt; setLiked(!liked)}&gt;Like&lt;/button&gt;;
+}</code></pre>
+
+            <h2>Best Practices</h2>
+            <h3>1. Push Client Boundaries Down</h3>
+            <p>Keep your Client Components as leaf nodes in the component tree. This ensures that as much of your application as possible is rendered on the server, minimizing the JavaScript sent to the browser.</p>
+
+            <h3>2. Use Suspense for Loading States</h3>
+            <p>Wrap async Server Components in <code>&lt;Suspense&gt;</code> boundaries to show loading states while data is being fetched. This creates a polished user experience without complex loading logic.</p>
+
+            <h3>3. Leverage Parallel Data Fetching</h3>
+            <p>Use <code>Promise.all()</code> to fetch data in parallel within Server Components. Since you're on the server, there's no waterfall effect from sequential API calls.</p>
+
+            <h2>Conclusion</h2>
+            <p>Server Components in Next.js 14 represent the future of React development. By understanding when to use Server vs Client Components, you can build applications that are significantly faster, more secure, and easier to maintain. Start migrating today — your users (and your Lighthouse score) will thank you.</p>
+          `
+        },
+        {
+          id: 2,
+          title: "Optimizing Web Vitals for SEO",
+          category: "Performance",
+          categoryColor: "green",
+          image: "https://placehold.co/1200x600/0f172a/10b981?text=Performance&font=outfit",
+          readTime: "7 min read",
+          date: "Dec 28, 2025",
+          author: "Delmar Dev",
+          summary: "How to improve LCP and CLS scores to rank higher on Google and provide a better user experience.",
+          content: `
+            <p>Google's Core Web Vitals have become a critical ranking factor. If your website scores poorly on LCP, CLS, or INP, you're not just delivering a bad user experience — you're losing search engine visibility. Let's fix that.</p>
+
+            <h2>Understanding Core Web Vitals</h2>
+            <p>Core Web Vitals consist of three essential metrics that Google uses to evaluate your page's user experience:</p>
+            <ul>
+              <li><strong>LCP (Largest Contentful Paint):</strong> Measures loading performance. Aim for under 2.5 seconds.</li>
+              <li><strong>INP (Interaction to Next Paint):</strong> Measures responsiveness. Aim for under 200 milliseconds.</li>
+              <li><strong>CLS (Cumulative Layout Shift):</strong> Measures visual stability. Aim for under 0.1.</li>
+            </ul>
+
+            <h2>Fixing LCP (Largest Contentful Paint)</h2>
+            <p>LCP is often the hardest to optimize because it depends on multiple factors. Here's a systematic approach:</p>
+
+            <h3>1. Optimize Your Hero Image</h3>
+            <p>The LCP element is usually a hero image or a large heading. For images, use modern formats like <code>WebP</code> or <code>AVIF</code>, and always set explicit <code>width</code> and <code>height</code> attributes.</p>
+
+            <pre><code>&lt;!-- Bad: No dimensions, no modern format --&gt;
+&lt;img src="hero.jpg" alt="Hero"&gt;
+
+&lt;!-- Good: Optimized with modern format and dimensions --&gt;
+&lt;img
+  src="hero.webp"
+  alt="Hero"
+  width="1200"
+  height="600"
+  fetchpriority="high"
+  loading="eager"
+&gt;</code></pre>
+
+            <h3>2. Preload Critical Resources</h3>
+            <p>Use <code>&lt;link rel="preload"&gt;</code> to tell the browser about critical resources early. Preload your LCP image, critical fonts, and above-the-fold CSS.</p>
+
+            <h3>3. Minimize Server Response Time (TTFB)</h3>
+            <p>Use a CDN, enable compression (Brotli over Gzip), and consider server-side rendering or static generation for critical pages.</p>
+
+            <h2>Eliminating CLS (Cumulative Layout Shift)</h2>
+            <p>CLS issues are frustrating for users — they're reading content that suddenly jumps. Common causes:</p>
+            <ul>
+              <li>Images without dimensions causing reflow</li>
+              <li>Dynamically injected content (ads, banners)</li>
+              <li>Web fonts causing FOUT (Flash of Unstyled Text)</li>
+              <li>Late-loading CSS or JavaScript</li>
+            </ul>
+
+            <blockquote><p>The simplest fix for most CLS issues: always define explicit dimensions for media elements and reserve space for dynamic content using CSS <code>aspect-ratio</code> or <code>min-height</code>.</p></blockquote>
+
+            <h2>Improving INP (Interaction to Next Paint)</h2>
+            <p>INP replaced FID (First Input Delay) and is much harder to score well on. It measures the latency of <strong>all</strong> interactions, not just the first one.</p>
+            <ul>
+              <li><strong>Break up long tasks:</strong> Use <code>requestIdleCallback</code> or <code>setTimeout</code> to yield to the main thread.</li>
+              <li><strong>Debounce event handlers:</strong> For scroll and resize events, debounce to avoid excessive processing.</li>
+              <li><strong>Use Web Workers:</strong> Offload heavy computations to a separate thread.</li>
+            </ul>
+
+            <h2>Measuring Your Progress</h2>
+            <p>Use these tools to track your improvements:</p>
+            <ul>
+              <li><strong>Google PageSpeed Insights</strong> — for field and lab data</li>
+              <li><strong>Chrome DevTools Lighthouse Panel</strong> — for detailed audits</li>
+              <li><strong>Google Search Console</strong> — for real-world Core Web Vitals data</li>
+              <li><strong>web-vitals library</strong> — for monitoring in production</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>Optimizing Web Vitals is not a one-time task. It's an ongoing process that requires monitoring, testing, and iterating. The payoff is enormous: better user experience, higher search rankings, and increased conversions. Start with LCP — it usually has the biggest impact — then tackle CLS and INP.</p>
+          `
+        },
+        {
+          id: 3,
+          title: "The Art of Clean Code",
+          category: "Best Practices",
+          categoryColor: "pink",
+          image: "https://placehold.co/1200x600/0f172a/f43f5e?text=Clean+Code&font=outfit",
+          readTime: "4 min read",
+          date: "Nov 10, 2025",
+          author: "Delmar Dev",
+          summary: "Why writing maintainable software is more important than writing clever code. A guide for junior developers.",
+          content: `
+            <p>Early in my career, I thought being a great developer meant writing the most clever, concise code possible. I was wrong. The best code isn't clever — it's clear. Let me explain why maintainability trumps brilliance every single time.</p>
+
+            <h2>The Cost of Clever Code</h2>
+            <p>Clever code impresses in code reviews but creates nightmares in production. Consider this: you write a brilliant one-liner that reduces 10 lines to 1. Six months later, a bug appears. Can your teammate understand that one-liner at 2 AM during an incident? Probably not.</p>
+
+            <blockquote><p>"Any fool can write code that a computer can understand. Good programmers write code that humans can understand." — Martin Fowler</p></blockquote>
+
+            <h2>Principles of Clean Code</h2>
+            <h3>1. Meaningful Names</h3>
+            <p>Variable and function names should reveal intent. If you need a comment to explain what a variable holds, the name is wrong.</p>
+
+            <pre><code>// Bad
+const d = new Date();
+const x = users.filter(u => u.a > 18);
+
+// Good
+const currentDate = new Date();
+const adultUsers = users.filter(user => user.age > 18);</code></pre>
+
+            <h3>2. Small, Focused Functions</h3>
+            <p>Each function should do one thing and do it well. If your function is longer than 20 lines, it's probably doing too much.</p>
+
+            <pre><code>// Bad: Does too many things
+function processUser(user) {
+  // validate, format, save to DB, send email, log activity
+}
+
+// Good: Single responsibility
+function validateUser(user) { /* ... */ }
+function formatUserData(user) { /* ... */ }
+function saveUser(user) { /* ... */ }
+function sendWelcomeEmail(user) { /* ... */ }
+function logUserActivity(userId, action) { /* ... */ }</code></pre>
+
+            <h3>3. Avoid Deep Nesting</h3>
+            <p>Deeply nested code is hard to read. Use early returns (guard clauses) to flatten your code structure.</p>
+
+            <pre><code>// Bad: Deep nesting
+function getDiscount(user) {
+  if (user) {
+    if (user.isPremium) {
+      if (user.orders > 10) {
+        return 0.2;
+      }
+    }
+  }
+  return 0;
+}
+
+// Good: Guard clauses
+function getDiscount(user) {
+  if (!user) return 0;
+  if (!user.isPremium) return 0;
+  if (user.orders <= 10) return 0;
+  return 0.2;
+}</code></pre>
+
+            <h3>4. Comments: The "Why", Not the "What"</h3>
+            <p>Good code is self-documenting — you shouldn't need comments to explain <em>what</em> it does. But you should comment on <em>why</em> a decision was made, especially if it seems counterintuitive.</p>
+
+            <h2>The DRY Principle (But Don't Overdo It)</h2>
+            <p>"Don't Repeat Yourself" is important, but premature abstraction is worse than duplication. Wait until you see the same pattern three times before extracting it into a shared function.</p>
+
+            <h2>Code Reviews: Your Secret Weapon</h2>
+            <p>Code reviews aren't just about catching bugs — they're about sharing knowledge and maintaining code quality. When reviewing, focus on:</p>
+            <ul>
+              <li><strong>Readability:</strong> Can you understand this at a glance?</li>
+              <li><strong>Simplicity:</strong> Is there a simpler way to achieve the same result?</li>
+              <li><strong>Edge cases:</strong> What happens with empty arrays, null values, or unexpected input?</li>
+              <li><strong>Naming:</strong> Do the names convey meaning?</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+            <p>Clean code is a skill that takes years to master, but the fundamentals are simple: write for humans first, computers second. Your future self — and your teammates — will thank you.</p>
+          `
+        }
+      ];
+
+      // ============================
+      // Render Logic
+      // ============================
+      const params = new URLSearchParams(window.location.search);
+      const articleId = parseInt(params.get("id"));
+
+      const categoryColors = {
+        blue: { text: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/30" },
+        green: { text: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/30" },
+        pink: { text: "text-pink-400", bg: "bg-pink-500/10", border: "border-pink-500/30" },
+      };
+
+      function renderArticle(article) {
+        const color = categoryColors[article.categoryColor] || categoryColors.blue;
+        const otherArticles = articles.filter(a => a.id !== article.id);
+
+        document.title = article.title + " | Delmar Dev";
+
+        const bgClass = { blue: 'bg-blue', green: 'bg-green', pink: 'bg-pink' };
+        const heroColor = bgClass[article.categoryColor] || 'bg-blue';
+        const iconMap = { Engineering: 'fa-code', Performance: 'fa-tachometer-alt', 'Best Practices': 'fa-gem' };
+        const heroIcon = iconMap[article.category] || 'fa-newspaper';
+
+        document.getElementById("article-content").innerHTML = `
+          <div class="article-hero">
+            <div class="article-hero-bg ${heroColor}"></div>
+            <div class="hero-decoration hero-decoration-1"></div>
+            <div class="hero-decoration hero-decoration-2"></div>
+            <div class="relative z-10 w-full p-8 md:p-16 max-w-5xl">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-10 h-10 rounded-lg ${color.bg} border ${color.border} flex items-center justify-center">
+                  <i class="fas ${heroIcon} ${color.text}"></i>
+                </div>
+                <span class="text-sm font-semibold ${color.text}">${article.category}</span>
+              </div>
+              <h1 class="text-3xl md:text-5xl font-bold text-white leading-tight mb-5">${article.title}</h1>
+              <div class="flex flex-wrap items-center gap-4 md:gap-6 text-slate-300/70 text-sm">
+                <div class="flex items-center gap-2">
+                  <img src="images/about-profile.jpeg" alt="Author" class="w-8 h-8 rounded-full object-cover object-top border border-white/20">
+                  <span>${article.author}</span>
+                </div>
+                <span class="flex items-center gap-1"><i class="far fa-calendar-alt"></i> ${article.date}</span>
+                <span class="flex items-center gap-1"><i class="far fa-clock"></i> ${article.readTime}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+              <article class="article-body">${article.content}</article>
+
+              <aside class="space-y-8">
+                <div class="glass rounded-xl p-6 sticky top-24">
+                  <h4 class="text-white font-bold mb-4 flex items-center gap-2"><i class="fas fa-user-edit text-primary"></i> About the Author</h4>
+                  <div class="flex items-center gap-4 mb-4">
+                    <img src="images/about-profile.jpeg" alt="Author" class="w-14 h-14 rounded-full object-cover object-top border-2 border-primary/50">
+                    <div>
+                      <p class="text-white font-semibold">${article.author}</p>
+                      <p class="text-slate-400 text-sm">Software Engineer</p>
+                    </div>
+                  </div>
+                  <p class="text-slate-400 text-sm leading-relaxed mb-4">Building high-performance web apps with a focus on speed, scalability, and user experience.</p>
+                  <a href="index.html#contact" class="text-primary text-sm hover:underline flex items-center gap-1"><i class="fas fa-envelope text-xs"></i> Get in Touch</a>
+                </div>
+
+                <div class="glass rounded-xl p-6">
+                  <h4 class="text-white font-bold mb-4 flex items-center gap-2"><i class="fas fa-newspaper text-primary"></i> Related Articles</h4>
+                  <div class="space-y-4">
+                    ${otherArticles.map(a => {
+                      const c = categoryColors[a.categoryColor] || categoryColors.blue;
+                      return `
+                        <a href="article.html?id=${a.id}" class="block glass rounded-lg p-4 related-card transition-all duration-300 border border-transparent">
+                          <span class="text-xs ${c.text} font-semibold">${a.category}</span>
+                          <h5 class="text-white text-sm font-semibold mt-1 leading-snug">${a.title}</h5>
+                          <span class="text-slate-500 text-xs mt-2 block"><i class="far fa-clock mr-1"></i>${a.readTime}</span>
+                        </a>`;
+                    }).join("")}
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderAllArticles() {
+        document.title = "All Articles | Delmar Dev";
+
+        document.getElementById("article-content").innerHTML = `
+          <div class="pt-28 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">All <span class="text-gradient">Articles</span></h1>
+            <p class="text-slate-400 text-lg mb-12 max-w-2xl">Insights, tutorials, and best practices on modern web development, performance optimization, and software engineering.</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 all-articles-grid">
+              ${articles.map(a => {
+                const c = categoryColors[a.categoryColor] || categoryColors.blue;
+                return `
+                  <a href="article.html?id=${a.id}" class="article-card glass rounded-xl overflow-hidden border border-transparent group">
+                    <div class="h-48 overflow-hidden">
+                      <img src="${a.image}" alt="${a.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                      <span class="text-xs ${c.text} font-semibold mb-2 block">${a.category}</span>
+                      <h3 class="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">${a.title}</h3>
+                      <p class="text-slate-400 text-sm line-clamp-3">${a.summary}</p>
+                      <div class="mt-4 flex items-center justify-between text-slate-500 text-xs">
+                        <span><i class="far fa-calendar-alt mr-1"></i>${a.date}</span>
+                        <span><i class="far fa-clock mr-1"></i>${a.readTime}</span>
+                      </div>
+                    </div>
+                  </a>`;
+              }).join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      // ============================
+      // Route
+      // ============================
+      if (articleId) {
+        const article = articles.find(a => a.id === articleId);
+        if (article) {
+          renderArticle(article);
+        } else {
+          document.getElementById("article-content").innerHTML = `
+            <div class="pt-32 pb-16 text-center max-w-xl mx-auto px-4">
+              <i class="fas fa-exclamation-triangle text-6xl text-yellow-400 mb-6 block"></i>
+              <h1 class="text-3xl font-bold text-white mb-4">Article Not Found</h1>
+              <p class="text-slate-400 mb-8">The article you're looking for doesn't exist or has been removed.</p>
+              <a href="article.html" class="glass px-6 py-3 rounded-full text-white hover:bg-white/10 transition-colors border border-white/20 inline-block">View All Articles</a>
+            </div>`;
+        }
+      } else {
+        renderAllArticles();
+      }
+
+      // ============================
+      // Reading Progress Bar
+      // ============================
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        document.getElementById("progress-bar").style.width = progress + "%";
+      });
+
+      // ============================
+      // Theme Toggle
+      // ============================
+      function toggleTheme() {
+        const body = document.body;
+        const icon = document.getElementById("theme-icon");
+        body.classList.toggle("light-mode");
+        if (body.classList.contains("light-mode")) {
+          icon.classList.remove("fa-sun", "text-yellow-400");
+          icon.classList.add("fa-moon", "text-slate-700");
+        } else {
+          icon.classList.remove("fa-moon", "text-slate-700");
+          icon.classList.add("fa-sun", "text-yellow-400");
+        }
+      }
+    </script>
+    </div> <!-- End fade-in wrapper -->
+    <script src="script.js"></script>
+  </body>
+</html>
+```

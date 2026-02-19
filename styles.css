@@ -1,0 +1,754 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #3b82f6;
+  --secondary-color: #60a5fa;
+  --bg-dark: #020617;
+  --bg-light: #f8fafc;
+  --text-dark: #f8fafc;
+  --text-light: #0f172a;
+  --glass-bg-dark: rgba(255, 255, 255, 0.05);
+  --glass-bg-light: rgba(255, 255, 255, 0.7);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-border-light: rgba(0, 0, 0, 0.08);
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light-mode {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+}
+
+body.light-mode .glass {
+    background: var(--glass-bg-light);
+    border-color: var(--glass-border-light);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* Soft shadow for depth */
+}
+
+body.light-mode .text-slate-400,
+body.light-mode .text-slate-500,
+body.light-mode .text-slate-300 {
+    color: #475569; /* Much darker slate for readability */
+}
+
+body.light-mode .text-white {
+    color: #0f172a; /* Dark text for headers in light mode */
+}
+
+/* Light Mode Mesh BG Fix */
+body.light-mode .mesh-bg {
+    background-color: var(--bg-light);
+}
+
+body.light-mode .mesh-sphere {
+    opacity: 0.1; /* Lower opacity for light mode */
+}
+
+body.light-mode .nav-link {
+    color: #475569; /* Darker links for light mode */
+}
+
+body.light-mode .nav-link:hover {
+    color: var(--primary-color);
+    background: rgba(59, 130, 246, 0.1);
+}
+
+body.light-mode .experience-badge {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+
+/* Background Gradients */
+.bg-gradient-blob {
+  position: absolute;
+  filter: blur(80px);
+  z-index: -1;
+  opacity: 0.4;
+  animation: blob-bounce 10s infinite ease-in-out alternate;
+}
+
+.blob-1 {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, var(--primary-color), transparent);
+}
+.blob-2 {
+  bottom: -10%;
+  right: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, var(--secondary-color), transparent);
+}
+.blob-3 {
+  top: 40%;
+  left: 30%;
+  width: 30vw;
+  height: 30vw;
+  background: radial-gradient(circle, #8b5cf6, transparent);
+  animation-delay: -5s;
+}
+
+@keyframes blob-bounce {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(20px, -20px) scale(1.1);
+  }
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-card {
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08); /* Dark mode hover */
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Light Mode Overrides for Glass Card */
+body.light-mode .glass-card:hover {
+    background: rgba(0, 0, 0, 0.05); /* Light mode hover */
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+
+/* About Me Image Transition */
+.profile-image-container {
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 20px; /* Keep this rounded */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.profile-image-container:hover {
+    /* Hover effect removed as requested */
+    /* transform: scale(1.05) rotate(2deg); */
+    /* box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3); */
+}
+
+/* Skill Bubbles */
+.skill-bubble {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 16px;
+    border-radius: 9999px; /* Pill shape */
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid;
+    transition: all 0.3s ease;
+    cursor: default;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.skill-bubble:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    filter: brightness(1.2);
+}
+
+.profile-image-container img {
+    transition: transform 0.5s ease;
+}
+
+.profile-image-container:hover img {
+    /* transform: scale(1.1); Zoom removed */
+}
+
+/* Typography & Decorative */
+.text-gradient {
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Navigation */
+.nav-link {
+  position: relative;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px; /* Full rounded (pill shape) */
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #94a3b8; /* Slate 400 */
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* Background Circle Animation */
+.nav-link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+  z-index: -1;
+  opacity: 0.15; /* Transparent primary color */
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-link:hover::before {
+  width: 150%;
+  height: 150%;
+}
+
+/* Active State (optional, if you want it to look active) */
+.nav-link.active {
+    color: var(--primary-color);
+}
+
+/* Timeline */
+.timeline-line {
+  position: absolute;
+  left: 20px; /* Adjust based on dot size/padding */
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--primary-color),
+    var(--secondary-color),
+    transparent
+  );
+}
+
+
+
+/* Animated Mesh Background */
+.mesh-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-color: var(--bg-dark);
+    overflow: hidden;
+}
+
+.mesh-sphere {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    animation: move-sphere 20s infinite alternate ease-in-out;
+}
+
+.sphere-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--primary-color), transparent);
+    top: -100px;
+    left: -100px;
+}
+
+.sphere-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #8b5cf6, transparent);
+    bottom: -100px;
+    right: -100px;
+    animation-delay: -5s;
+}
+
+.sphere-3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #10b981, transparent);
+    top: 40%;
+    left: 50%;
+    animation-delay: -10s;
+}
+
+@keyframes move-sphere {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+    100% { transform: translate(100px, 100px) rotate(90deg) scale(1.2); }
+}
+
+/* Page Transitions */
+.page-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-dark);
+    z-index: 10000;
+    pointer-events: none;
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.page-transition-overlay.active {
+    transform: translateY(0);
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: scale(1.1);
+}
+
+.whatsapp-tooltip {
+    position: absolute;
+    right: 70px;
+    background-color: white;
+    color: #333;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(20px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.whatsapp-float:hover .whatsapp-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.whatsapp-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #25d366;
+    opacity: 0.7;
+    z-index: -1;
+    animation: whatsapp-pulse-animation 2s infinite;
+}
+
+@keyframes whatsapp-pulse-animation {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+/* Skills Rope Animation */
+.rope-path {
+    filter: drop-shadow(0 0 5px var(--primary-color));
+}
+
+.skill-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Floating Animations - P1 (Down/Up) */
+@keyframes float-p1 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Floating Animations - P2 (Up/Down - Reverse Phase) */
+@keyframes float-p2 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(15px); }
+}
+
+.float-p1 {
+    animation: float-p1 3s ease-in-out infinite;
+}
+
+.float-p2 {
+    animation: float-p2 3s ease-in-out infinite;
+}
+
+
+/* Connector Line Adjustment */
+.rope-connector {
+    /* Connects the icon to the main SVG path */
+    position: relative;
+    z-index: -1;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px; /* Moved to Left */
+    /* right: 100px; Removed */
+    width: 50px;
+    height: 50px;
+    background: rgba(59, 130, 246, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 50%;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 99;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Experience Badge Styles */
+.experience-badge {
+    position: absolute;
+    bottom: 20px;
+    right: -10px; /* Start slightly off to the right */
+    background: rgba(15, 23, 42, 0.8); /* Dark background */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: translateX(20px) translateY(10px);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy transition */
+    z-index: 20;
+}
+
+.profile-image-container:hover .experience-badge {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+    right: -20px; /* Pops out a bit more */
+}
+
+/* Animation for the number */
+.experience-badge .text-4xl {
+    background: linear-gradient(to bottom, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* Mobile Adjustments for Buttons */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .back-to-top {
+        bottom: 20px;
+        left: 20px; /* Adjusted for mobile */
+        right: auto;
+    }
+
+    .profile-image-container:hover .experience-badge {
+        right: 0; /* Align properly on mobile */
+    }
+}
+
+/* ===== Soft Skills Flow Line Animation (New) ===== */
+.skill-flow-visual {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.flow-line {
+    stroke-dasharray: 700;
+    stroke-dashoffset: 700;
+    transition: stroke-dashoffset 3s ease-out;
+}
+
+.tree-grown .flow-line {
+    stroke-dashoffset: 0;
+}
+
+.tree-leaves {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.tree-leaf {
+    position: absolute;
+    transform: scale(0);
+    opacity: 0;
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition-delay: var(--delay, 0s);
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.tree-grown .tree-leaf {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.leaf-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+    transition: transform 0.3s ease;
+}
+
+.leaf-inner:hover {
+    transform: scale(1.1) translateY(-5px);
+}
+
+.leaf-icon {
+    width: 66px;
+    height: 66px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.5)); 
+    border: 1.5px solid rgba(59, 130, 246, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 
+        0 8px 15px rgba(0, 0, 0, 0.4),
+        inset 0 0 10px rgba(59, 130, 246, 0.1);
+    backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: rotate(0deg);
+    overflow: hidden;
+}
+
+/* Central Vein */
+.leaf-icon::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    width: 1.5px;
+    height: 70%;
+    background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.2), transparent);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.leaf-icon i {
+    position: relative;
+    z-index: 2;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+}
+
+/* Removal of stems and gaps to "stuck" leaves to lines */
+.leaf-icon::before {
+    display: none;
+}
+
+.leaf-icon {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7)); 
+    border: 1.5px solid rgba(59, 130, 246, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 50%; /* Perfectly circular nodes */
+    box-shadow: 
+        0 8px 15px rgba(0, 0, 0, 0.5),
+        inset 0 0 15px rgba(59, 130, 246, 0.2);
+    backdrop-filter: blur(16px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(-50%); /* Center on the horizontal line */
+    overflow: hidden;
+}
+
+/* Removal of all leaf decorations */
+.leaf-icon::after, .leaf-icon::before {
+    display: none;
+}
+
+.leaf-icon i {
+    position: relative;
+    z-index: 2;
+    font-size: 1.4rem;
+    filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.4));
+}
+
+.leaf-inner {
+    transform: translateY(0); /* Reset for straight line */
+}
+
+
+.leaf-inner:hover .leaf-icon {
+    background: rgba(16, 185, 129, 0.25);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+.leaf-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #f8fafc; /* High contrast white/slate-50 */
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Add depth for readability */
+}
+
+.leaf-inner:hover .leaf-label {
+    color: #10b981;
+}
+
+/* Light Mode Adjustments for Flow Line */
+body.light-mode .leaf-icon {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
+    border-color: rgba(59, 130, 246, 0.3);
+    color: var(--primary-color);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .leaf-icon::after {
+    background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.15), transparent);
+}
+
+body.light-mode .leaf-label {
+    color: #0f172a !important;
+    text-shadow: none !important;
+}
+
+body.light-mode .leaf-inner:hover .leaf-label {
+    color: var(--primary-color) !important;
+}
+
+/* Mobile Adjustments for Tree */
+@media (max-width: 768px) {
+    .skill-tree-container {
+        min-height: 450px !important;
+    }
+    
+    .leaf-left .leaf-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 48px 0;
+    }
+    .leaf-right .leaf-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 0 48px;
+    }
+    
+    .leaf-label {
+        font-size: 0.6rem;
+    }
+}
