@@ -731,24 +731,100 @@ body.light-mode .leaf-inner:hover .leaf-label {
     color: var(--primary-color) !important;
 }
 
-/* Mobile Adjustments for Tree */
+/* Mobile & Tablet Adjustments for Skills Tree */
 @media (max-width: 768px) {
+    /* Skill Tree Container - Vertical Stack for Mobile */
     .skill-tree-container {
-        min-height: 450px !important;
+        min-height: 800px !important;
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
+        padding: 40px 0;
     }
     
-    .leaf-left .leaf-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 48px 0;
+    .skill-flow-visual {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px !important;
+        height: 100% !important;
+        transform: translateX(-50%);
+        min-height: 800px;
     }
-    .leaf-right .leaf-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 0 48px;
+
+    .skill-flow-visual svg {
+        display: none; /* Hide horizontal SVG on mobile */
     }
-    
+
+    /* CSS Vertical Line for Mobile */
+    .skill-flow-visual::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        opacity: 0.3;
+        transform: translateX(-50%);
+    }
+
+    .tree-leaves {
+        position: relative !important;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .tree-leaf {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        transform: scale(0) !important;
+        opacity: 0;
+        margin-bottom: 20px;
+    }
+
+    .tree-grown .tree-leaf {
+        transform: scale(1) !important;
+        opacity: 1;
+    }
+
+    .leaf-icon {
+        width: 50px !important;
+        height: 50px !important;
+        transform: none !important; /* Reset centering the SVG line */
+    }
+
+    .leaf-icon i {
+        font-size: 1.1rem !important;
+    }
+
     .leaf-label {
-        font-size: 0.6rem;
+        font-size: 0.7rem !important;
+        margin-top: 8px;
+    }
+
+    /* Reveal animations adjustments */
+    .reveal {
+        transform: translateY(30px);
+    }
+}
+
+/* Tablet Optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .skill-tree-container {
+        max-width: 90% !important;
+    }
+    .leaf-icon {
+        width: 55px !important;
+        height: 55px !important;
+    }
+    .leaf-label {
+        font-size: 0.75rem !important;
     }
 }
