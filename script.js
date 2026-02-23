@@ -43,6 +43,15 @@ btn.addEventListener("click", () => {
     document.body.classList.toggle("menu-open");
 });
 
+// Close mobile menu when clicking a link
+const mobileLinks = menu.querySelectorAll('a');
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        document.body.classList.remove('menu-open');
+    });
+});
+
 // Load More Projects Logic
 document.addEventListener('DOMContentLoaded', () => {
     const loadMoreBtn = document.getElementById('load-more-btn');
