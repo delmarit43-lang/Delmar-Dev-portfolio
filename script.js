@@ -58,6 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Optional: visual effect to show they are new
                 project.classList.add('animate-fade-in'); 
             });
+
+            // Trigger reveal animation for new projects
+            reveal();
             
             // Hide the button itself
             this.style.display = 'none';
